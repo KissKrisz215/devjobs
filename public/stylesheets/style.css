@@ -1,0 +1,105 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+    /* border:1px solid red; */
+}
+
+:root{
+    --violet: rgb(89,100,224);
+    --light-violet: rgb(147, 155, 244);
+    --dark-blue:  rgb(25, 32, 45);
+    --midnight:  rgb(18, 23, 33);
+    --white: rgb(255, 255, 255);
+    --light-grey: rgb(244, 246, 248);
+    --grey: rgb(157, 174, 194);
+    --dark-grey: rgb(110, 128, 152);
+}
+
+body{
+    background-color: var(--light-grey);
+}
+
+#navbar{
+  background-color: var(--light-violet);
+  background-image: url("/images/desktop/bg-pattern-header.svg");
+}
+
+.rounded-bl-corner{
+    border-bottom-left-radius: 6rem;
+}
+
+.btn-violet{
+    background-color: var(--violet);
+    color: var(--white);
+}
+
+.btn-violetlight{
+    background-color: var(--light-grey);
+    color:var(--violet);
+}
+
+.btn-violet:hover{
+    background-color: rgba(89,100,224,0.8);
+}
+
+.input-location{
+    padding-left:3rem !important;
+    background-image: url("/images/desktop/icon-location.svg");
+    background-size: 20px 25px;
+    background-repeat: no-repeat;
+    background-position: 10px 1.5rem;
+}
+
+.input-search{
+    padding-left:3rem !important;
+    background-image: url("/images/desktop/icon-search.svg");
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: 10px 1.5rem;
+}
+
+.box:hover{
+    transform:scale(1.05);
+    transition-property:transform;
+    transition-duration: 250ms;
+    transition-timing-function: ease-out;
+    cursor: pointer;
+}
+
+.dark-mode{
+    background-color:var(--midnight);
+}
+
+.dark-mode .box{
+    background-color: var(--dark-blue);
+}
+
+.dark-mode h4{
+    color:var(--white);
+}
+.dark-mode input::placeholder{
+    color:var(--grey);
+}
+
+.dark-mode input{
+    border-color: var(--midnight);
+}
+
+.dark-mode .location{
+    color:var(--violet)
+}
+
+.dark-mode .text-muted{
+    color:var(--grey) !important;
+}
+
+.dark-mode .location{
+    color:var(--violet) !important;
+}
+
+.dark-mode .form-control{
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    color: var(--white)
+}

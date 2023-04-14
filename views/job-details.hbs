@@ -1,0 +1,82 @@
+<div class="container-fluid p-0">
+        <div id="navbar" class="container-fluid w-100 rounded-bl-corner mb-2">
+        <div class="container p-3 pb-4">
+            <nav class="navbar navbar-expand-lg p-4 d-flex justify-content-between">
+                <a class="navbar-brand" href="/"><img src="/images/desktop/logo.svg" alt=""></a>
+                <ul class="navbar-nav">
+                    <li class="nav-item d-flex gap-2">
+                           <span><img src="/images/desktop/icon-sun.svg" alt=""></span>
+                      <div onclick="darkLight()" class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input px-3 py-2" name="" id="checkbox">
+                            <label class="form-check-label" for="checkbox"></label>
+                      </div>
+                      <span><img src="/images/desktop/icon-moon.svg" alt=""></span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="container position-relative w-50 bg-white px-5 ">
+         <div class=" d-flex position-absolute top-0 start-50 translate-middle w-100 bg-white">
+            <div class=" p-4 d-flex justify-content-center align-items-center" style="background-color:{{jobData.logoBackground}}">
+                <img style="width:50px;height:50px;" src="/{{jobData.logo}}" alt="">
+            </div>
+           <div class="d-flex gap-5 justify-content-between align-items-center p-4 w-100">
+            <div>
+               <h4>{{jobData.company}}</h4>
+               <p class="text-muted opacity-75">{{jobData.company}}.com</p>
+            </div>
+            <div>
+           <button class="btn btn-violetlight px-3 py-3 rounded-1">Company Site</button>
+            </div>
+           </div>
+         </div>
+         <div class="row mt-5 pt-5">
+            <div class="row d-flex gap-3">
+                <p class="text-muted opacity-75">{{jobData.postedAt}}</p>
+                <p class="text-muted opacity-75">{{jobData.contract}}</p>
+           </div>
+           <div class=" d-flex justify-content-between gap-4 align-items-center">
+            <div class="d-flex flex-column">
+               <h1 class="fw-bold fs-2">{{jobData.position}}</h1>
+                <p>{{jobData.location}}</p>
+            </div>
+            <div>
+            <button class="btn-violet btn rounded-1">Apply Now</button>
+            </div>
+           </div>
+           <div class="text-muted opacity-75 py-5">
+            {{jobData.description}}
+           </div>
+           <div>
+             <h2 class="fw-bold py-3">Requirements</h2>
+             <p class="text-muted opacity-75">{{jobData.requirements.content}}</p>
+             <ul class="text-muted opacity-75">
+                {{#each jobData.requirements.items}}
+                <li class="py-2">{{this}}</li>
+                {{/each}}
+             </ul>
+           </div>
+           <div>
+            <h2 class="fw-bold py-3">What You Will Do</h2>
+            <p class="text-muted opacity-75">{{jobData.role.content}}</p>
+            <ol>
+                {{#each jobData.role.items}}
+                <li class="py-2 text-muted opacity-">{{this}}</li>
+                {{/each}}
+            </ul>
+           </div>
+         </div>
+    </div>
+    <div class="container-fluid bg-white p-4 mt-5">
+      <div class="container d-flex w-50 justify-content-between">
+        <div>
+          <h2 class="fs-4">{{jobData.position}}</h2>
+          <p class="text-muted opacity-75">{{jobData.company}}</p>
+        </div>
+        <div class="d-flex align-items-center">
+            <button class="btn btn-violet rounded-1 px-3 py-2">Apply Now</button>
+        </div>
+      </div>
+    </div>
+</div>
