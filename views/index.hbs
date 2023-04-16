@@ -23,14 +23,13 @@
     <div class="container position-relative">
         <div class="row position-absolute top-0 start-50 translate-middle w-100">
            <div class="col">
-            <form class="d-flex" action="">
-
-                <input class="form-control p-3 position-relative rounded-0 input-search" type="text" placeholder="Filter by title, companies, expretise...">
-                <input class="form-control p-3 position-relative rounded-0 input-location" type="text" name="" id="" placeholder="Filter by location..">
+            <form class="d-flex" action="/search" method="post">
+                <input class="form-control p-3 position-relative rounded-0 input-search" type="text" name="general" placeholder="Filter by title, companies, expretise...">
+                <input class="form-control p-3 position-relative rounded-0 input-location" type="text" name="location" id="" placeholder="Filter by location..">
                 <div class="form-control p-3 d-flex gap-4 align-items-center rounded-0">
-                   <input class="custom-control-input p-2" id="check" type="checkbox">
+                   <input class="custom-control-input p-2" name="jobtype" id="check" type="checkbox">
                    <label class="fw-bold" for="check">Full Time Only</label>
-                   <button class="btn btn-violet text-white rounded-2 px-3 py-2">Search</button>
+                   <button class="btn btn-violet text-white rounded-2 px-3 py-2" type="submit">Search</button>
                 </div>
             </form>
            </div>            
