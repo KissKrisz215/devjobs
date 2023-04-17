@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="container position-relative w-50 bg-white px-5 mb-5 mt-4">
-         <div class=" d-flex position-absolute top-0 start-50 translate-middle w-100 bg-white rounded-3">
+         <div class=" d-flex position-absolute top-0 start-50 translate-middle w-100 bg-white rounded-3 box">
             <div class=" p-4 d-flex justify-content-center align-items-center rounded-start" style="background-color:{{jobData.logoBackground}}">
                 <img style="width:50px;height:50px;" src="/{{jobData.logo}}" alt="">
             </div>
@@ -32,26 +32,26 @@
            </div>
          </div>
 </div>
-<div class="container w-50 bg-white p-5 pt-0 rounded-3" style="margin-top:7rem;">
+<div class="container w-50 bg-white p-5 pt-0 rounded-3 box mb-5" style="margin-top:7rem;">
      <div class="row mt-5 pt-5">
-            <div class="row d-flex gap-3">
+            <div class=" d-flex gap-3">
                 <p class="text-muted opacity-75">{{jobData.postedAt}}</p>
                 <p class="text-muted opacity-75">{{jobData.contract}}</p>
            </div>
            <div class=" d-flex justify-content-between gap-4 align-items-center">
             <div class="d-flex flex-column">
-               <h1 class="fw-bold fs-2">{{jobData.position}}</h1>
-                <p>{{jobData.location}}</p>
+               <h4 class="fw-bold fs-2">{{jobData.position}}</h4>
+                <p class="location">{{jobData.location}}</p>
             </div>
             <div>
-            <a href="/apply-now" class="btn-violet btn rounded-1">Apply Now</a>
+            <a href="/apply-now" class="btn btn-violet rounded-2 px-3 py-2">Apply Now</a>
             </div>
            </div>
            <div class="text-muted opacity-75 py-5">
             {{jobData.description}}
            </div>
            <div>
-             <h2 class="fw-bold py-3">Requirements</h2>
+             <h4 class="fw-bold py-3">Requirements</h4>
              <p class="text-muted opacity-75">{{jobData.requirements.content}}</p>
              <ul class="text-muted opacity-75">
                 {{#each jobData.requirements.items}}
@@ -60,7 +60,7 @@
              </ul>
            </div>
            <div>
-            <h2 class="fw-bold py-3">What You Will Do</h2>
+            <h4 class="fw-bold py-3">What You Will Do</h4>
             <p class="text-muted opacity-75">{{jobData.role.content}}</p>
             <ol>
                 {{#each jobData.role.items}}
@@ -70,14 +70,14 @@
            </div>
          </div>
     </div>
-    <div class="container-fluid bg-white p-4 mt-5">
+    <div class="container-fluid bg-white p-4 mt-5 box">
       <div class="container d-flex w-50 justify-content-between">
         <div>
-          <h2 class="fs-4">{{jobData.position}}</h2>
+          <h4 class="fs-4">{{jobData.position}}</h4>
           <p class="text-muted opacity-75">{{jobData.company}}</p>
         </div>
         <div class="d-flex align-items-center">
-            <a href="/apply-now" class="btn btn-violet rounded-1 px-3 py-2">Apply Now</a>
+            <a href="/apply-now" class="btn btn-violet rounded-2 px-3 py-2">Apply Now</a>
         </div>
       </div>
     </div>
