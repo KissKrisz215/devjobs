@@ -1,14 +1,14 @@
 <div class="container-fluid p-0">
     <div id="navbar" class="container-fluid w-100 rounded-bl-corner mb-2">
         <div class="container p-3 pb-4">
-            <nav class="navbar navbar-expand-lg p-4 d-flex justify-content-between">
+            <nav class="navbar navbar-expand-lg p-4">
                 <a class="navbar-brand" href="/"><img src="/images/desktop/logo.svg" alt=""></a>
                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav gap-4">
-                    <li class="nav-item d-flex gap-2 align-items-center">
+                <ul class="navbar-nav gap-4 d-flex">
+                    <li class="nav-item d-flex gap-2 align-items-center justify-self-center">
                            <span><img src="/images/desktop/icon-sun.svg" alt=""></span>
                       <div onclick="darkLight()" class="form-check form-switch">
                             <input type="checkbox" class="form-check-input px-3 py-2" name="" id="checkbox">
@@ -44,7 +44,7 @@
         <div class="container mt-5 pt-5 pb-5 mb-5 d-flex flex-wrap wrap gap-5 justify-content-center">
             {{#each jobsData}}
             <a class="text-decoration-none" style="max-width:100%;width:300px;min-width:30%" href="jobs/{{_id}}">
-             <div class="card p-4 position-relative box rounded-3">
+             <div class="card p-4 pb-0 position-relative box rounded-3">
                 <div class="p-3 mx-4 rounded-4 position-absolute top-0 start-25 translate-middle " style="background-color:{{logoBackground}};width:15%">
                 <img class="w-100" src="{{logo}}" alt="">
                 </div>

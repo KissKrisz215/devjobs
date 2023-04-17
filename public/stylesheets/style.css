@@ -2,6 +2,7 @@
     margin:0;
     padding:0;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
     /* border:1px solid red; */
 }
 
@@ -13,7 +14,7 @@
     --white: rgb(255, 255, 255);
     --light-grey: rgb(244, 246, 248);
     --grey: rgb(157, 174, 194);
-    --dark-grey: rgb(110, 128, 152);
+    --dark-grey: rgb(48, 55, 65);
 }
 
 body{
@@ -39,8 +40,17 @@ body{
     color:var(--violet);
 }
 
+.btn-violetlight:hover{
+    background-color: rgba(147, 155, 244,0.6);
+    color:var(--violet);
+}
+
 .btn-violet:hover{
     background-color: rgba(89,100,224,0.8);
+}
+
+.text-violet{
+    color:var(--violet);
 }
 
 .input-location{
@@ -104,7 +114,14 @@ body{
     color: var(--white)
 }
 
+.dark-mode .btn-gray{
+    background-color:var(--dark-grey);
+    color:var(--white);
+}
 
+.mb-6{
+    margin-bottom:5rem;
+}
 
 ul li::before{
     content: "\2022";
