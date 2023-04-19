@@ -49,21 +49,13 @@ router.get('/apply-now', (req,res) => {
 
 router.post('/search', async (req,res) => {
     try{
-      const {general,location} = req.body;
-      console.log(general)
-    const data = await JobModel.find({$where: function() { 
-        for (var key in this) { 
-            if (this[key] === "Software Engineer") { 
-                return true; 
-            } 
-        } 
-        return false; 
-    }})
-    console.log(data);
+        const {general,location} = req.body;
+        const jobsData = await JobModel.find({"location":  {$regex : `${location}`}})
+        console.log(jobsData);
+        res.render("index", {jobsData});
     }catch(err){
         console.error("There was an error", err)
     }
-    res.render("index");
 })
 
 module.exports = router;
