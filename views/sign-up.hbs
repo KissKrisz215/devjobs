@@ -1,4 +1,7 @@
-<div class="container-fluid p-5 mt-5">
+<div class="container-fluid p-4">
+    <a class="btn btn-primary" href="/">Back</a>
+</div>
+<div class="container-fluid p-3 mt-5">
    <div class="container d-flex justify-content-center mt-5">
     <div class="row">
         <form class="p-4 bg-white rounded-2 mt-5" action="" method="post">
@@ -7,21 +10,21 @@
                 <p class="text-muted opacity-75">Please fill in this form to create an account!</p>
             </div>
             <div class="d-flex gap-3">
-            <input class="form-control" type="text" placeholder="First Name" required>
-            <input class="form-control" type="text" placeholder="Last Name" required>
+            <input class="form-control" name="firstname" type="text" placeholder="First Name" required>
+            <input class="form-control" name="lastname" type="text" placeholder="Last Name" required>
             </div>
             <div class="py-2">
-                <input class="form-control" type="text" name="" id="" placeholder="Email" required>
+                <input class="form-control" type="text" name="email" id="" placeholder="Email" required>
             </div>
             <div class="py-2">
-                <input class="form-control" type="password" placeholder="Password" required>
+                <input class="form-control" name="password" type="password" placeholder="Password" required>
             </div>
             <div class="py-2">
-                <input class="form-control" type="password" placeholder="Confirm Password" required>
+                <input class="form-control" name="password2" type="password" placeholder="Confirm Password" required>
             </div>
             <div class="d-flex gap-3 pt-3">
                 <div>
-                <input class="checkbox" type="checkbox" required> 
+                <input class="checkbox" type="checkbox"> 
                 </div>
                 <p>I accept the <a href="/">Terms of Use</a> & <a href="/">Privacy Policy</a></p>
             </div>
@@ -32,3 +35,21 @@
         </div>
    </div>
 </div>
+{{#if popup}}
+<div class="modal fade show d-block focus" id="exampleModalLabel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+       <img src="/images/logos/success-icon.png" alt="" style="width:9rem;height:9rem;">
+      </div>
+      <div class="modal-body text-center">
+        <h2>Sucessful Registration!</h2>
+        <p>We have sent an activation link to your account to continue with the registration process.</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-primary px-3 py-2 text-uppercase" onclick="exitModal()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}

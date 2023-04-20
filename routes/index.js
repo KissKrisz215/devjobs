@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const JobModel = require("../models/Link.model");
+const UserModel = require("../models/User.model");
+const bcryptjs = require('bcryptjs');
 
 /* GET home page */
 router.get('/', async (req, res, next) => {
@@ -49,12 +51,38 @@ router.get('/apply-now', (req,res) => {
 
 router.post('/search', async (req,res) => {
     try{
+        console.log(req.body);
         const {general,location} = req.body;
-        const jobsData = await JobModel.find({"location":  {$regex : `${location}`}})
+        const jobsData = await JobModel.find({"location":  {$regex : `${location}`}, "contract": `${req.body.jobtype}`})
         console.log(jobsData);
         res.render("index", {jobsData});
     }catch(err){
         console.error("There was an error", err)
+    }
+})
+
+router.post('/sign-up', async (req,res) => {
+    try{
+      const {firstname, lastname, email, password} = req.body;
+      const salt = bcryptjs.genSaltSync(12);
+      const hash = await bcryptjs.hash(password, salt);
+      UserModel.findOne({email: email}).then((user) => {
+        if(user){
+            console.log("User already Exists");
+        }else{
+            const newUser = new UserModel({
+              firstName: firstname,
+              lastName: lastname,
+              email: email,
+              password: hash,
+            })
+            newUser.save();
+            console.log("User has been created");
+            res.render("sign-up", {popup: true});
+        }
+      })
+    }catch(err){
+        console.error("There was an error", err);
     }
 })
 

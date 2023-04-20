@@ -1,13 +1,13 @@
 <div class="container-fluid p-0">
     <div id="navbar" class="container-fluid w-100 rounded-bl-corner mb-2">
         <div class="container p-3 pb-4">
-            <nav class="navbar navbar-expand-lg p-4">
+            <nav class="navbar navbar-expand-lg p-4 d-flex">
                 <a class="navbar-brand" href="/"><img src="/images/desktop/logo.svg" alt=""></a>
                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav gap-4 d-flex">
+                <ul class="navbar-nav gap-4 d-flex justify-content-end w-100">
                     <li class="nav-item d-flex gap-2 align-items-center justify-self-center">
                            <span><img src="/images/desktop/icon-sun.svg" alt=""></span>
                       <div onclick="darkLight()" class="form-check form-switch">
@@ -16,9 +16,9 @@
                       </div>
                       <span><img src="/images/desktop/icon-moon.svg" alt=""></span>
                     </li>
-                         <li class="row d-flex gap-2 align-items-center">
-                    <a class="btn btn-dark" href="/sign-up">Sign Up</a>
-                    <a class="btn btn-violetlight" href="/login">Log in</a>
+                         <li class="d-md-flex d-block gap-2 align-items-center">
+                    <a class="btn col-12 col-md-6 btn-dark" href="/sign-up">Sign Up</a>
+                    <a class="btn col-12 col-md-6 btn-violetlight" href="/login">Log in</a>
                 </li>
                 </ul>
             </nav>
@@ -32,7 +32,7 @@
                 <input class="form-control p-3 position-relative rounded-0 input-search" type="text" name="general" placeholder="Filter by title, companies, expretise...">
                 <input class="form-control p-3 position-relative rounded-0 input-location" type="text" name="location" id="" placeholder="Filter by location..">
                 <div class="form-control p-3 d-flex gap-4 align-items-center rounded-0">
-                   <input class="custom-control-input p-2" name="jobtype" id="check" type="checkbox">
+                   <input class="custom-control-input p-2" name="jobtype" id="check" type="checkbox" value="Full Time">
                    <label class="fw-bold" for="check">Full Time Only</label>
                    <button class="btn btn-violet text-white rounded-2 px-3 py-2" type="submit">Search</button>
                 </div>

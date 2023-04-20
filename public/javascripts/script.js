@@ -29,3 +29,9 @@ async function darkLight(){
       disableDarkMode();
     }
 }
+
+function exitModal(){
+  const modal = document.getElementById("exampleModalLabel");
+   modal.classList.remove("show");
+   modal.classList.remove("d-block");
+}
