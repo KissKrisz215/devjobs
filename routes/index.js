@@ -26,9 +26,12 @@ router.get('/jobs/:JobId', async (req,res) => {
 })
 
 
-router.get('/apply-now', (req,res) => {
+router.get('/apply-now/:jobId', async (req,res) => {
+    console.log(req.params);
+    const {jobId} = req.params;
     try{
-        res.render("apply-now");
+        const jobData = await JobModel.findById(jobId);
+        res.render("apply-now", {jobData});
     }catch(err){
         console.error("There was an error", err)
     }
