@@ -1,0 +1,148 @@
+<div class="container-fluid py-5">
+   <div class="px-5 py-2">
+   <a class="btn btn-primary" href="/">Back</a>
+   </div>
+    <div class="container p-5">
+        <h1 class="fw-bold pb-5">Account Settings</h1>
+        <div class="row bg-white py-5 rounded-2" style="box-shadow: -1px 1px 10px -4px rgba(0,0,0,0.75);">
+             <div class="col-12 col-md-3">
+                 <div class="row d-flex flex-column gap-4 align-items-center text-center">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" style="width:120px;height:100px;border-radius:50%;">
+                    <h3 class="pb-3">{{userData.firstName}} {{userData.lastName}}</h3>
+                 </div>
+               <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active p-3 rounded-0 text-start" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pill-home" aria-selected="true"><i class="fa-solid fa-house me-2"></i>Account</button>
+                  <button class="nav-link p-3 rounded-0 text-start" id="v-pills-activity-tab" data-bs-toggle="pill" data-bs-target="#v-pills-activity" type="button" role="tab" aria-controls="v-pill-activity" aria-selected="true"><i class="fa-solid fa-chart-line me-2"></i>Recent Activity</button>
+                 <button class="nav-link p-3 rounded-0 text-start" id="v-pills-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-password" type="button" role="tab" aria-controls="v-pill-password" aria-selected="true"><i class="fa-solid fa-key fa-rotate-270 me-2"></i>Password</button>
+                  <button class="nav-link p-3 rounded-0 text-start" id="v-pills-security-tab" data-bs-toggle="pill" data-bs-target="#v-pills-security" type="button" role="tab" aria-controls="v-pill-security" aria-selected="true"><i class="fa-solid fa-display me-2"></i>Security</button>
+                  <button class="nav-link p-3 rounded-0 text-start" id="v-pills-notification-tab" data-bs-toggle="pill" data-bs-target="#v-pills-notification" type="button" role="tab" aria-controls="v-pill-notification" aria-selected="true"><i class="fa-solid fa-bell me-2"></i>Notification</button>
+               </div>
+             </div>
+             <div class="col-12 col-md-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="d-flex justify-content-end px-3">
+                  <form action="/auth/logout" method="post">
+                  <button class="btn btn-primary" type="submit">Logout</button>
+                  </form>
+                </div>
+                
+  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+    <h3 class="fw-bold">Account Settings</h3>
+    <form action="/profile/update" method="post">
+        <div class=" d-flex gap-4 py-2">
+         <div class=" col-5 d-flex flex-column gap-2">
+            <label for="firstName">First Name</label>
+            <input class="form-control" id="firstName" type="text" name="firstName" value="{{userData.firstName}}" placeholder="{{userData.firstName}}">
+         </div>
+         <div class=" col-5 d-flex flex-column gap-2">
+            <label for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" type="text" name="lastName"  value="{{userData.lastName}}" placeholder="{{userData.lastName}}">
+         </div>
+        </div>
+        <div class=" d-flex gap-4 py-2">
+         <div class=" col-5 d-flex flex-column gap-2">
+            <label for="email">Email</label>
+            <input class="form-control" id="email" type="email" name="email" value="{{userData.email}}" placeholder="{{userData.email}}">
+         </div>
+         <div class=" col-5 d-flex flex-column gap-2">
+            <label for="number">Phone Number</label>
+            <input class="form-control" id="number" name="phone" value="{{userData.phone}}" type="tel" placeholder="{{userData.phoneNumber}}">
+         </div>
+        </div>
+        <div class=" d-flex gap-4 py-2">
+         <div class=" col-5 d-flex flex-column gap-2">
+            <label for="company">Company</label>
+            <input class="form-control" id="company" type="text" name="company" value="{{userData.company}}" placeholder="{{userData.company}}">
+         </div>
+         <div class=" col-5 d-flex flex-column gap-2">
+            <label for="designation">Designation</label>
+            <input class="form-control" id="designation" type="text" name="designation" value="{{userData.designation}}" placeholder="{{userData.designation}}">
+         </div>
+        </div>
+           <div class=" d-flex gap-4 py-2">
+          <div class="form-group w-100">
+    <label class="pb-2" for="bio">Bio:</label>
+    <textarea class="form-control" id="bio" name="bio" type="text" value="{{userData.bio}}" placeholder="{{userData.bio}}" rows="4"></textarea>
+  </div>
+        </div>
+        <div class="py-3">
+        <button class="btn btn-primary" type="submit">Update</button>
+        <a class="btn btn-light" href="/profile">Cancel</a>
+        </div>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="v-pills-activity" role="tabpanel" aria-labelledby="v-pills-activity-tab">
+   <h3 class="fw-bold">Activities</h3>
+  </div>
+  <div class="tab-pane fade" id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
+   <form action="/profile/update/password" method="post">
+        <h3 class=" fw-bold">Password Settings</h3>
+        <div class="row my-2">
+         <div class="col-12 col-md-6 py-3">
+         <label for="oldPassword">Old Password</label>     
+         <input class="form-control" type="password" name="oldPassword" id="oldPassword">
+         </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-12 col-md-6">
+          <label for="newPassword">New Password</label>
+          <input class="form-control" type="password" name="newPassword" id="newPassword">
+          </div>
+          <div class="col-12 col-md-6">
+          <label for="confirmNewPassword">Confirm New Password</label>
+          <input class="form-control" type="password" id="newPassword">
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+         <button class="btn btn-primary">Update</button>
+         <button class="btn btn-light">Cancel</button>
+        </div>
+   </form>
+  </div>
+  <div class="tab-pane fade" id="v-pills-notification" role="tabpanel" aria-labelledby="v-pills-notification-tab">
+   <h3 class="fw-bold">Notification Settings</h3>
+   <div class="row">
+     <div class="col d-flex flex-column">
+      <div class="form-check form-switch py-2">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+  <label class="form-check-label" for="flexSwitchCheckChecked">Notify me about new features and updates</label>
+</div>
+<div class="form-check form-switch py-2">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked2">
+  <label class="form-check-label" for="flexSwitchCheckChecked2">Notify me by email for latest news</label>
+</div>
+<div class="form-check form-switch py-2">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked3">
+  <label class="form-check-label" for="flexSwitchCheckChecked3"> Notify me about tips on using account</label>
+</div>
+     </div>
+   </div>
+     <div class="d-flex gap-2 py-2">
+         <button class="btn btn-primary">Update</button>
+         <button class="btn btn-light">Cancel</button>
+        </div>
+  </div>
+
+</div>
+<div class="tab-pane fade" id="v-pills-security" role="tabpanel" aria-labelledby="v-pills-security-tab">
+   <h3 class="fw-bold">Security Settings</h3>
+   <div>
+   <div class="form-check form-switch py-2">
+  <input class="form-check-input" type="checkbox" id="securityCheckBox">
+  <label class="form-check-label" for="securityCheckBox"> 2Factor Authentication</label>
+</div>
+  <div class="form-check form-switch py-2">
+  <input class="form-check-input" type="checkbox" id="activityCheckBox">
+  <label class="form-check-label" for="activityCheckBox"> Enable Activity Logs</label>
+  
+</div>
+ <div class="d-flex gap-2 py-2">
+         <button class="btn btn-primary">Update</button>
+         <button class="btn btn-light">Cancel</button>
+        </div>
+   </div>
+</div>
+             </div>
+        </div>
+    </div>
+</div>

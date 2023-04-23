@@ -17,8 +17,9 @@
                       <span><img src="/images/desktop/icon-moon.svg" alt=""></span>
                     </li>
                          <li class="d-md-flex d-block gap-2 align-items-center">
-                    <a class="btn col-12 col-md-6 btn-dark" href="/sign-up">Sign Up</a>
-                    <a class="btn col-12 col-md-6 btn-violetlight" href="/login">Log in</a>
+                    <a class="btn col-12 col-md-6 btn-dark" href="/auth/sign-up">Sign Up</a>
+                    <a class="btn col-12 col-md-6 btn-violetlight" href="/auth/login">Log in</a>
+                    <img src="" alt="">
                 </li>
                 </ul>
             </nav>
@@ -41,7 +42,7 @@
            </div>
            
         </div>
-        <div class="container mt-5 pt-5 mb-5 d-flex flex-wrap wrap gap-5 justify-content-center">
+        <div id="jobs" class="container mt-5 pt-5 mb-5 d-flex flex-wrap wrap gap-5 justify-content-center">
             {{#each jobsData}}
             <a class="text-decoration-none" style="max-width:100%;width:300px;min-width:30%" href="jobs/{{_id}}">
              <div class="card p-4 pb-0 position-relative box rounded-3">
@@ -66,3 +67,23 @@
             </div>
     </div>
 </div>
+
+<script>
+$(function() {
+  $('#load-more').click(function() {
+    const skip = $('.item').length;
+    
+    $.getJSON('/items?skip=' + skip, function(data) {
+      const itemsHtml = data.map(item => '<div class="item">' + item + '</div>').join('');
+      
+      $('#items-container').append(itemsHtml);
+    });
+  });
+});
+</script>
+
+
+
+
+
+

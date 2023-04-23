@@ -18,6 +18,21 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    phone: {
+        type: Number,
+    },
+    company: {
+        type: String,
+    },
+    designation: {
+        type:String,
+    },
+    bio: {
+        type:String,
+    },
+    activity: {
+        type: [String],
+    },
     date: {
         type: Date,
         default: Date.now,

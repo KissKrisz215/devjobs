@@ -1,7 +1,18 @@
 <section class="h-100">
-	<div class="container-fluid p-4">
+	<div class="container-fluid p-4 d-flex">
+		<div>
     <a class="btn btn-primary" href="/">Back</a>
-</div>
+	</div>
+	{{!-- <div class="gap-4 d-flex">
+                    <div class="d-flex gap-2 align-items-center justify-self-center">
+                           <span><img src="/images/desktop/icon-sun.svg" alt=""></span>
+                      <div onclick="darkLight()" class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input px-3 py-2" name="" id="checkbox">
+                            <label class="form-check-label" for="checkbox"></label>
+                      </div>
+                      <span><img src="/images/desktop/icon-moon.svg" alt=""></span>
+                    </div>
+</div> --}}
 		<div class="container h-100 mt-5">
 			<div class="row justify-content-sm-center h-100 mt-5">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9 mt-5">
@@ -11,7 +22,7 @@
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required>
+									<input id="email" type="email" class="form-control" name="email" value="" required />
 									<div class="invalid-feedback">
 										Email is invalid
 									</div>

@@ -3,6 +3,7 @@ const router = express.Router();
 const JobModel = require("../models/Link.model");
 const UserModel = require("../models/User.model");
 const bcryptjs = require('bcryptjs');
+const isLoggedIn = require('../middlewares/isLoggedIn');
 
 /* GET home page */
 router.get('/', async (req, res, next) => {
@@ -19,27 +20,11 @@ router.get('/jobs/:JobId', async (req,res) => {
     const {JobId} = req.params;
     const jobData = await JobModel.findById(JobId);
     res.render("job-details", {jobData});
-    console.log(jobData);
     }catch(err){
         console.error("There was an error", err);
     }
 })
 
-router.get('/login', (req,res) => {
-    try{
-        res.render("login");
-    }catch(err){
-        console.error("There was an error", err);
-    }
-})
-
-router.get('/sign-up', (req,res) => {
-    try{
-        res.render("sign-up");
-    }catch(err){
-        console.error("There was an error", err);
-    }
-})
 
 router.get('/apply-now', (req,res) => {
     try{
@@ -51,39 +36,79 @@ router.get('/apply-now', (req,res) => {
 
 router.post('/search', async (req,res) => {
     try{
-        console.log(req.body);
         const {general,location} = req.body;
         const jobsData = await JobModel.find({"location":  {$regex : `${location}`}, "contract": `${req.body.jobtype}`})
-        console.log(jobsData);
         res.render("index", {jobsData});
     }catch(err){
         console.error("There was an error", err)
     }
 })
 
-router.post('/sign-up', async (req,res) => {
+router.get('/profile', isLoggedIn, async (req,res) => {
     try{
-      const {firstname, lastname, email, password} = req.body;
-      const salt = bcryptjs.genSaltSync(12);
-      const hash = await bcryptjs.hash(password, salt);
-      UserModel.findOne({email: email}).then((user) => {
-        if(user){
-            console.log("User already Exists");
-        }else{
-            const newUser = new UserModel({
-              firstName: firstname,
-              lastName: lastname,
-              email: email,
-              password: hash,
-            })
-            newUser.save();
-            console.log("User has been created");
-            res.render("sign-up", {popup: true});
+        const user = await UserModel.findOne({"email": req.session.user.email})
+        const userData = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phone: user.phone,
+            company: user.company,
+            designation: user.designation,
+            bio: user.bio
         }
-      })
+        res.render("profile", {userData});
     }catch(err){
         console.error("There was an error", err);
     }
+})
+
+router.post('/profile/update', isLoggedIn, async (req,res) => {
+    try{
+        const userId = req.session.userId;
+        const updateData = {};
+        Object.keys(req.body).forEach((key) => {
+            if(req.body[key]){
+                updateData[key] = req.body[key];
+            }
+        })
+          const user = await UserModel.findOneAndUpdate(
+            { _id: userId },
+            {
+              $set: updateData,
+            },
+            {
+              new: true,
+            }
+          )
+          res.redirect("/profile")
+    }catch(err){
+        console.error("There was an error", err);
+    }
+})
+
+router.post("/profile/update/password", async (req,res) => {
+    const {newPassword, oldPassword} = req.body;
+    try{
+        const user = await UserModel.findOne({_id: req.session.userId});
+        const passwordMatch = await bcryptjs.compare(
+            oldPassword,
+            user.password
+        )
+        console.log(user.password);
+        if(passwordMatch){
+            const salt = bcryptjs.genSaltSync(12);
+            const hash = await bcryptjs.hash(newPassword, salt);
+           const updatePassword = await UserModel.findOneAndUpdate({_id: req.session.userId}, {"password": hash});
+        console.log(user)
+           res.redirect("/profile")
+
+        }else{
+            res.send("There was an error");
+        }
+    }catch(err){
+        console.error("There was an error", err);
+    }
+    console.log(req.body);
 })
 
 module.exports = router;
