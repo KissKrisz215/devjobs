@@ -5,6 +5,7 @@ const UserModel = require("../models/User.model");
 const ApplyJobModel = require("../models/ApplyJob.model");
 const bcryptjs = require('bcryptjs');
 const isLoggedIn = require('../middlewares/isLoggedIn');
+const { ObjectId } = require('mongodb');
 
 /* GET home page */
 router.get('/', async (req, res, next) => {
@@ -153,9 +154,19 @@ router.post("/apply-now/:JobId", async (req,res) => {
     }
 })
 
-router.post("/jobs/delete", (req, res)=> {
+router.post("/jobs/delete/:jobId", async (req, res)=> {
+     const {jobId} = req.params;
+     const {userId} = req.session;
+     const _id = new ObjectId(jobId);
     try{
-     console.log("Loaded")
+        await UserModel.updateOne(
+            { _id: userId },
+            { $pull: { jobs: _id } }
+          );
+     const deleteJob = await ApplyJobModel.findByIdAndDelete(jobId);
+     const user = await UserModel.findOne({email: req.session.user.email});
+     console.log(user.jobs);
+     res.redirect("/profile");
     }catch(err){
         console.error("There was an error", err);
     }
