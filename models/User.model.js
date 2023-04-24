@@ -1,4 +1,6 @@
 const {Schema, model} = require("mongoose");
+const mongoose = require('mongoose');
+const ApplyJob = require('../models/ApplyJob.model')
 
 const UserSchema = new Schema({
     firstName: {
@@ -30,9 +32,10 @@ const UserSchema = new Schema({
     bio: {
         type:String,
     },
-    activity: {
-        type: [String],
-    },
+    jobs: [{
+            type: Schema.Types.ObjectId,
+            ref: 'ApplyJob',
+        }],
     date: {
         type: Date,
         default: Date.now,

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const JobModel = require("../models/Link.model");
 const UserModel = require("../models/User.model");
+const ApplyJobModel = require("../models/ApplyJob.model");
 const bcryptjs = require('bcryptjs');
 const isLoggedIn = require('../middlewares/isLoggedIn');
 
@@ -27,7 +28,6 @@ router.get('/jobs/:JobId', async (req,res) => {
 
 
 router.get('/apply-now/:jobId', async (req,res) => {
-    console.log(req.params);
     const {jobId} = req.params;
     try{
         const jobData = await JobModel.findById(jobId);
@@ -47,23 +47,29 @@ router.post('/search', async (req,res) => {
     }
 })
 
-router.get('/profile', isLoggedIn, async (req,res) => {
-    try{
-        const user = await UserModel.findOne({"email": req.session.user.email})
-        const userData = {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            phone: user.phone,
-            company: user.company,
-            designation: user.designation,
-            bio: user.bio
-        }
-        res.render("profile", {userData});
-    }catch(err){
-        console.error("There was an error", err);
+router.get('/profile', isLoggedIn, async (req, res) => {
+    try {
+      const user = await UserModel.findOne({ email: req.session.user.email })
+      .populate("jobs")
+        console.log(user);
+
+      const userData = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        company: user.company,
+        designation: user.designation,
+        bio: user.bio,
+        activity: user.activity,
+        jobs: user.jobs,
+      };
+  
+      res.render('profile', { userData });
+    } catch (err) {
+      console.error('There was an error', err);
     }
-})
+  });
 
 router.post('/profile/update', isLoggedIn, async (req,res) => {
     try{
@@ -112,6 +118,47 @@ router.post("/profile/update/password", async (req,res) => {
         console.error("There was an error", err);
     }
     console.log(req.body);
+})
+
+router.post("/apply-now/:JobId", async (req,res) => {
+    const {JobId} = req.params;
+    const {email} = req.session.user;
+    const job = await JobModel.findById(JobId);
+    const user = await UserModel.findOne({email: email})
+    try{
+     const jobApply = new ApplyJobModel({
+        jobId: JobId,
+        jobTitle: job.position,
+        jobCompany: job.company,
+        author: user._id,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        company: req.body.company,
+        occupation: req.body.occupation,
+        bio: req.body.bio,
+        resume: req.body.file,
+     })
+     jobApply.save();
+
+    const update = await UserModel.updateOne(
+        { _id: user._id },
+        { $push: { jobs: jobApply._id } }
+     );
+     console.log(update);
+     console.log("The user has been saved");
+    }catch(err){
+        console.error("There was an error", err);
+    }
+})
+
+router.post("/jobs/delete", (req, res)=> {
+    try{
+     console.log("Loaded")
+    }catch(err){
+        console.error("There was an error", err);
+    }
 })
 
 module.exports = router;
