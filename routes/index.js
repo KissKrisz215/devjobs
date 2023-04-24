@@ -131,6 +131,8 @@ router.post("/apply-now/:JobId", async (req,res) => {
         jobId: JobId,
         jobTitle: job.position,
         jobCompany: job.company,
+        logoBackground: job.logoBackground,
+        logo: job.logo,
         author: user._id,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -167,6 +169,14 @@ router.post("/jobs/delete/:jobId", async (req, res)=> {
      const user = await UserModel.findOne({email: req.session.user.email});
      console.log(user.jobs);
      res.redirect("/profile");
+    }catch(err){
+        console.error("There was an error", err);
+    }
+})
+
+router.post("/jobs/edit/:jobId", async (req,res) => {
+    try{
+       res.send("Edit Page");
     }catch(err){
         console.error("There was an error", err);
     }

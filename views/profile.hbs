@@ -76,14 +76,26 @@
    <div class="d-flex flex-column gap-3" style="max-height:500px !important;overflow:scroll;">
    {{#each userData.jobs}}
    <div class="bg-light p-3 rounded-3 d-flex justify-content-between">
-    <div class="">
+    <div class="d-flex gap-3">
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="p-2" style="background-color:{{this.logoBackground}};border-radius:50%;">
+         <img class="h-100 w-100" src="{{this.logo}}" alt="">
+        </div>
+      </div>
+      <div>
 <h5 class="fw-bold">{{this.jobTitle}}</h5>
 <p class="text-muted p-0 m-0">{{this.jobCompany}}</p>
 </div>
+</div>
 <div class="d-flex align-items-center">
+  <div class="d-flex gap-2">
+    <form action="/jobs/edit/{{this._id}}" method="post">
+      <button class="btn btn-primary">Edit</button>
+    </form>
   <form action="/jobs/delete/{{this._id}}" method="post">
 <button class="btn btn-danger">Delete</button>
 </form>
+</div>
 </div>
    </div>
    {{/each}}

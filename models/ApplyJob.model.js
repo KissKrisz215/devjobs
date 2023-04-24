@@ -16,6 +16,12 @@ const applyJobSchema = new Schema({
         ref: 'User',
         required: true,
     },
+    logo: {
+        type: String,
+    },
+    logoBackground: {
+        type: String,
+    },
     jobCompany: {
         type: String,
     },
