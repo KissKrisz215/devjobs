@@ -52,6 +52,12 @@ const applyJobSchema = new Schema({
     resume: {
         type: String,
     },
+    fileType: {
+        type: String,
+    },
+    fileName: {
+        type: String,
+    },
     date: {
         type: Date,
         default: Date.now,

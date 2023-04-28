@@ -6,6 +6,9 @@ const ApplyJobModel = require("../models/ApplyJob.model");
 const bcryptjs = require('bcryptjs');
 const isLoggedIn = require('../middlewares/isLoggedIn');
 const { ObjectId } = require('mongodb');
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
+const fs = require('fs');
 
 /* GET home page */
 router.get('/', async (req, res, next) => {
@@ -52,7 +55,6 @@ router.get('/profile', isLoggedIn, async (req, res) => {
     try {
       const user = await UserModel.findOne({ email: req.session.user.email })
       .populate("jobs")
-        console.log(user);
 
       const userData = {
         firstName: user.firstName,
@@ -109,7 +111,6 @@ router.post("/profile/update/password", async (req,res) => {
             const salt = bcryptjs.genSaltSync(12);
             const hash = await bcryptjs.hash(newPassword, salt);
            const updatePassword = await UserModel.findOneAndUpdate({_id: req.session.userId}, {"password": hash});
-        console.log(user)
            res.redirect("/profile")
 
         }else{
@@ -121,7 +122,7 @@ router.post("/profile/update/password", async (req,res) => {
     console.log(req.body);
 })
 
-router.post("/apply-now/:JobId", async (req,res) => {
+router.post("/apply-now/:JobId", upload.single('file'), async (req,res) => {
     const {JobId} = req.params;
     const {email} = req.session.user;
     const job = await JobModel.findById(JobId);
@@ -141,16 +142,17 @@ router.post("/apply-now/:JobId", async (req,res) => {
         company: req.body.company,
         occupation: req.body.occupation,
         bio: req.body.bio,
-        resume: req.body.file,
+        resume: req.file.path,
+        fileType: req.file.mimetype,
+        fileName: req.file.originalname,
      })
-     jobApply.save();
-
+     const savedJob = await jobApply.save();
     const update = await UserModel.updateOne(
         { _id: user._id },
         { $push: { jobs: jobApply._id } }
      );
-     console.log(update);
      console.log("The user has been saved");
+     res.redirect(`/jobs/${JobId}`);
     }catch(err){
         console.error("There was an error", err);
     }
@@ -167,7 +169,6 @@ router.post("/jobs/delete/:jobId", async (req, res)=> {
           );
      const deleteJob = await ApplyJobModel.findByIdAndDelete(jobId);
      const user = await UserModel.findOne({email: req.session.user.email});
-     console.log(user.jobs);
      res.redirect("/profile");
     }catch(err){
         console.error("There was an error", err);
@@ -175,11 +176,50 @@ router.post("/jobs/delete/:jobId", async (req, res)=> {
 })
 
 router.post("/jobs/edit/:jobId", async (req,res) => {
+    const {jobId} = req.params;
+    jobId.toString();
     try{
-       res.send("Edit Page");
+        const data = await ApplyJobModel.findOne({_id: jobId});
+        const jobData = await JobModel.findOne({_id: data.jobId})
+    console.log("The data ==>", data)
+       res.render("edit", {data, jobData});
     }catch(err){
         console.error("There was an error", err);
     }
+})
+
+router.post("/jobs/update/:jobId", async (req,res) => {
+    const data = req.body;
+    console.log("JobId: => ", req.params.jobId)
+    console.log(data);
+    try{
+       const updateJob = await ApplyJobModel.updateOne({jobId: req.params.jobId}, {$set: data});
+       console.log("Job is updated");
+       res.redirect("/profile")
+    }catch(err){
+        console.error("There was an error", err);
+    }
+})
+
+router.post("/files/delete/:jobId", async (req,res) =>{
+  try{
+    const jobDetails = await ApplyJobModel.findById(req.params.jobId);
+    const fileName = jobDetails.resume;
+    fs.unlink(fileName, async (err) => {
+        if(err){
+            console.error("There was an error");
+            res.send("There was an error deleting the file!");
+            return
+        }
+        jobDetails.resume = undefined;
+        jobDetails.fileType = undefined;
+        jobDetails.fileName = undefined;
+        const saved = await jobDetails.save();
+        res.redirect( 307,`/jobs/edit/${req.params.jobId}`)
+    })
+  }catch(err){
+    console.error("There was an error", err);
+  }
 })
 
 module.exports = router;
