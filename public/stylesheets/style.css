@@ -81,11 +81,17 @@ body{
     cursor: pointer;
 }
 
+
+
 .dark-mode{
     background-color:var(--midnight);
 }
 
 .dark-mode .box{
+    background-color: var(--dark-blue) !important;
+}
+
+.dark-mode .details{
     background-color: var(--dark-blue) !important;
 }
 
@@ -145,6 +151,9 @@ ol li::before{
     margin-left: -1em;
 }
 
+.job-card:hover h4{
+    opacity: 75%;
+}
 
 @media screen and (max-width:768px) {
     .company-info{
@@ -172,5 +181,21 @@ ol li::before{
         height:1rem;
         position: absolute;
         top:-15%;
+    }
+    .search-bar{
+        border-radius:1rem !important;
+        width: 75% !important;
+    }
+}
+
+@media screen and (min-width:768px){
+    .job-card{
+        width:45% !important;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .job-card{
+        width:30% !important;
     }
 }

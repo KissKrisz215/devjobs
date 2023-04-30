@@ -21,7 +21,7 @@ const UserSchema = new Schema({
         required: true,
     },
     phone: {
-        type: Number,
+        type: String,
     },
     company: {
         type: String,

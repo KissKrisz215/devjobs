@@ -17,6 +17,10 @@ app.use('/', index);
 const AuthRoute = require('./routes/auth.routes');
 app.use("/auth", AuthRoute);
 
+const ProtectedRoute = require('./routes/protected.routes');
+const isLoggedIn = require('./middlewares/isLoggedIn');
+app.use('/', isLoggedIn ,ProtectedRoute);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
