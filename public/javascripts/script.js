@@ -2,6 +2,15 @@
 // const theme = document.getElementById("theme");
 let darkMode = localStorage.getItem("dark-mode");
 
+window.onload = (event) => {
+  if(darkMode === "enabled"){
+    enableDarkMode()
+    const switchButton = document.querySelector('.form-check-input').checked = true;
+  }else if(darkMode === "disabled"){
+    disableDarkMode();
+  }
+}
+
 const enableDarkMode = () => {
     const body = document.body;
     body.classList.add("dark-mode");

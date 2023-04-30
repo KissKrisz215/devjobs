@@ -6,6 +6,11 @@
         <h1 class="fw-bold pb-5">Account Settings</h1>
         <div class="row bg-white py-5 rounded-2" style="box-shadow: -1px 1px 10px -4px rgba(0,0,0,0.75);">
              <div class="col-12 col-md-3">
+                <div class="d-flex justify-content-end px-3 d-md-none">
+                  <form action="/auth/logout" method="post">
+                  <button class="btn btn-primary" type="submit">Logout</button>
+                  </form>
+                </div>
                  <div class="row d-flex flex-column gap-4 align-items-center text-center">
                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" style="width:120px;height:100px;border-radius:50%;">
                     <h3 class="pb-3">{{userData.firstName}} {{userData.lastName}}</h3>
@@ -20,7 +25,7 @@
              </div>
              <div class="col-12 col-md-9">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="d-flex justify-content-end px-3">
+                <div class="d-flex justify-content-end px-3 d-none d-md-flex">
                   <form action="/auth/logout" method="post">
                   <button class="btn btn-primary" type="submit">Logout</button>
                   </form>
@@ -29,34 +34,34 @@
   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
     <h3 class="fw-bold">Account Settings</h3>
     <form action="/profile/update" method="post">
-        <div class=" d-flex gap-4 py-2">
-         <div class=" col-5 d-flex flex-column gap-2">
+        <div class=" d-flex gap-4 py-2 flex-column flex-md-row">
+         <div class=" col-12 col-md-5 d-flex flex-column gap-2">
             <label for="firstName">First Name</label>
-            <input class="form-control" id="firstName" type="text" name="firstName" value="{{userData.firstName}}" placeholder="{{userData.firstName}}">
+            <input class="form-control p-2" id="firstName" type="text" name="firstName" value="{{userData.firstName}}" placeholder="{{userData.firstName}}">
          </div>
-         <div class=" col-5 d-flex flex-column gap-2">
+         <div class=" col-12 col-md-5 d-flex flex-column gap-2">
             <label for="lastName">Last Name</label>
-            <input class="form-control" id="lastName" type="text" name="lastName"  value="{{userData.lastName}}" placeholder="{{userData.lastName}}">
+            <input class="form-control p-2" id="lastName" type="text" name="lastName"  value="{{userData.lastName}}" placeholder="{{userData.lastName}}">
          </div>
         </div>
-        <div class=" d-flex gap-4 py-2">
-         <div class=" col-5 d-flex flex-column gap-2">
+        <div class=" d-flex gap-4 py-2 flex-column flex-md-row">
+         <div class="col-12 col-md-5 d-flex flex-column gap-2">
             <label for="email">Email</label>
-            <input class="form-control" id="email" type="email" name="email" value="{{userData.email}}" placeholder="{{userData.email}}">
+            <input class="form-control p-2" id="email" type="email" name="email" value="{{userData.email}}" placeholder="{{userData.email}}">
          </div>
-         <div class=" col-5 d-flex flex-column gap-2">
+         <div class=" col-12 col-md-5 d-flex flex-column gap-2">
             <label for="number">Phone Number</label>
-            <input class="form-control" id="number" name="phone" value="{{userData.phone}}" type="tel" placeholder="{{userData.phoneNumber}}">
+            <input class="form-control p-2" id="number" name="phone" value="{{userData.phone}}" type="tel" placeholder="{{userData.phoneNumber}}">
          </div>
         </div>
-        <div class=" d-flex gap-4 py-2">
-         <div class=" col-5 d-flex flex-column gap-2">
+        <div class=" d-flex gap-4 py-2 flex-column flex-md-row">
+         <div class="col-12 col-md-5 d-flex flex-column gap-2">
             <label for="company">Company</label>
-            <input class="form-control" id="company" type="text" name="company" value="{{userData.company}}" placeholder="{{userData.company}}">
+            <input class="form-control p-2" id="company" type="text" name="company" value="{{userData.company}}" placeholder="{{userData.company}}">
          </div>
-         <div class=" col-5 d-flex flex-column gap-2">
+         <div class="col-12 col-md-5 d-flex flex-column gap-2">
             <label for="designation">Designation</label>
-            <input class="form-control" id="designation" type="text" name="designation" value="{{userData.designation}}" placeholder="{{userData.designation}}">
+            <input class="form-control p-2" id="designation" type="text" name="designation" value="{{userData.designation}}" placeholder="{{userData.designation}}">
          </div>
         </div>
            <div class=" d-flex gap-4 py-2">
@@ -65,9 +70,9 @@
     <textarea class="form-control" id="bio" name="bio" type="text" value="{{userData.bio}}" placeholder="{{userData.bio}}" rows="4"></textarea>
   </div>
         </div>
-        <div class="py-3">
-        <button class="btn btn-primary" type="submit">Update</button>
-        <a class="btn btn-light" href="/profile">Cancel</a>
+        <div class="py-3 d-flex flex-column gap-4 flex-md-row">
+        <button class="btn btn-primary p-2" type="submit">Update</button>
+        <a class="btn btn-light p-2" href="/profile">Cancel</a>
         </div>
     </form>
   </div>
@@ -75,7 +80,7 @@
    <h3 class="fw-bold pb-4">Activities</h3>
    <div class="d-flex flex-column gap-3" style="max-height:500px !important;overflow:scroll;">
    {{#each userData.jobs}}
-   <div class="bg-light p-3 rounded-3 d-flex justify-content-between">
+   <div class="bg-light p-3 rounded-3 d-flex justify-content-between flex-column flex-md-row">
     <div class="d-flex gap-3">
       <div class="d-flex justify-content-center align-items-center">
         <div class="p-2" style="background-color:{{this.logoBackground}};border-radius:50%;">
@@ -88,12 +93,12 @@
 </div>
 </div>
 <div class="d-flex align-items-center">
-  <div class="d-flex gap-2">
+  <div class="d-flex gap-2 flex-column flex-md-row w-100">
     <form action="/jobs/edit/{{this._id}}" method="post">
-      <button class="btn btn-primary">Edit</button>
+      <button class="btn btn-primary w-100 p-2 mt-2">Edit</button>
     </form>
   <form action="/jobs/delete/{{this._id}}" method="post">
-<button class="btn btn-danger">Delete</button>
+<button class="btn btn-danger w-100 p-2 mt-2">Delete</button>
 </form>
 </div>
 </div>
@@ -120,9 +125,9 @@
           <input class="form-control" type="password" id="newPassword">
           </div>
         </div>
-        <div class="d-flex gap-2">
-         <button class="btn btn-primary">Update</button>
-         <button class="btn btn-light">Cancel</button>
+        <div class="d-flex gap-2 flex-column flex-md-row">
+         <button class="btn p-2 btn-primary">Update</button>
+         <button class="btn p-2 btn-light">Cancel</button>
         </div>
    </form>
   </div>
@@ -144,9 +149,9 @@
 </div>
      </div>
    </div>
-     <div class="d-flex gap-2 py-2">
-         <button class="btn btn-primary">Update</button>
-         <button class="btn btn-light">Cancel</button>
+    <div class="d-flex gap-2 flex-column flex-md-row mt-2">
+         <button class="btn p-2 btn-primary">Update</button>
+         <button class="btn p-2 btn-light">Cancel</button>
         </div>
   </div>
 
@@ -163,9 +168,9 @@
   <label class="form-check-label" for="activityCheckBox"> Enable Activity Logs</label>
   
 </div>
- <div class="d-flex gap-2 py-2">
-         <button class="btn btn-primary">Update</button>
-         <button class="btn btn-light">Cancel</button>
+ <div class="d-flex gap-2 flex-column flex-md-row mt-2">
+         <button class="btn p-2 btn-primary">Update</button>
+         <button class="btn p-2 btn-light">Cancel</button>
         </div>
    </div>
 </div>

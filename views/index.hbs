@@ -1,7 +1,7 @@
 <div class="container-fluid p-0">
     <div id="navbar" class="container-fluid w-100 rounded-bl-corner mb-2">
         <div class="container p-3 pb-4">
-            <nav class="navbar navbar-expand-lg py-4 pe-4 d-flex">
+            <nav class="navbar navbar-expand-md py-4 pe-4 d-flex ">
                 <a class="navbar-brand" href="/"><img src="/images/desktop/logo.svg" alt=""></a>
                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@
                       </div>
                       <span><img src="/images/desktop/icon-moon.svg" alt=""></span>
                     </li>
-                         <li class="d-flex gap-3">
+                         <li class="d-flex gap-3 flex-column flex-md-row ">
                     <a class="btn col-12 col-md-6 btn-dark py-2" href="/auth/sign-up">Sign Up</a>
                     <a class="btn col-12 col-md-6 btn-violetlight py-2" href="/auth/login">Log in</a>
                 </li>
@@ -28,15 +28,23 @@
     <div class="container position-relative">
         <div class="row position-absolute top-0 start-50 translate-middle w-100 p-0 m-0">
            <div class="col-12">
-            <form class="d-flex justify-content-center" action="/search" method="post">
-            <div class="col-4 col-md-5">
-                <input class="form-control p-4 position-relative rounded-0 input-search rounded-start" type="text" name="general" placeholder="Filter by title, companies, expretise...">
+            <form class="d-flex justify-content-start search-input rounded-3" action="/search" method="post">
+            <div class="col-4 col-12 col-md-4 col-xl-5 bg-white d-flex rounded-start p-3 search-input">
+                <input class="form-control p-2 position-relative rounded-0 input-search rounded-start border-0" type="text" name="general" placeholder="Filter by title, companies, expretise...">
+                <div class="d-flex gap-1 d-flex d-md-none">
+                    <button class="bg-transparent p-3 rounded-4 border-0">
+                   <i class="fa-solid fa-filter text-secondary dark-text"></i>
+                </button>
+                <button class="bg-violet p-3 rounded-4 border-0">
+                   <i class="fa-solid fa-magnifying-glass text-white"></i>
+                </button>
+                </div>
                 </div>
                 <div class="col-4 col-md-3 col-xl-4 d-none d-md-block">
-                <input class="form-control p-4 position-relative rounded-0 input-location" type="text" name="location" id="" placeholder="Filter by location..">
+                <input class="form-control py-4 position-relative rounded-0 input-location" type="text" name="location" id="" placeholder="Filter by location..">
                 </div>
-                <div class="col-4 col-md-4 col-xl-3">
-                <div class="form-control p-3 d-flex gap-4 align-items-center rounded-0 rounded-end justify-content-center">
+                <div class="col-4 col-md-5 col-xl-3">
+                <div class="form-control p-3 d-flex gap-4 align-items-center rounded-0 rounded-end justify-content-center d-none d-md-flex">
                     <div class="d-flex gap-2">
                    <input class="custom-control-input p-2" name="jobtype" id="check" type="checkbox" value="Full Time">
                    <label class="fw-bold" for="check">Full Time</label>

@@ -65,14 +65,6 @@ body{
     background-position: 10px 1.5rem;
 }
 
-.input-search{
-    padding-left:3rem !important;
-    background-image: url("/images/desktop/icon-search.svg");
-    background-size: 25px 25px;
-    background-repeat: no-repeat;
-    background-position: 10px 1.5rem;
-}
-
 .box:hover{
     transform:scale(1.05);
     transition-property:transform;
@@ -87,6 +79,9 @@ body{
     background-color:var(--midnight);
 }
 
+.form-switch .form-check-input:checked {
+    background-position: right center;
+}
 .dark-mode .box{
     background-color: var(--dark-blue) !important;
 }
@@ -127,6 +122,15 @@ body{
 .dark-mode .btn-gray{
     background-color:var(--dark-grey);
     color:var(--white);
+}
+
+.dark-mode .search-input{
+    background-color:var(--dark-blue) !important;
+    color:var(--white) !important;
+}
+
+.dark-mode .dark-text{
+    color: var(--white) !important;
 }
 
 .mb-6{
@@ -191,6 +195,13 @@ ol li::before{
 @media screen and (min-width:768px){
     .job-card{
         width:45% !important;
+    }
+    .input-search{
+        padding-left:3rem !important;
+        background-image: url("/images/desktop/icon-search.svg");
+        background-size: 25px 25px;
+        background-repeat: no-repeat;
+        background-position: 10px 0.6rem;
     }
 }
 
