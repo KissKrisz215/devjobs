@@ -4,13 +4,13 @@
 <div class="container-fluid py-md-5">
   <div class="container py-md-5">
     <div class="d-flex py-5 gap-4 border-warning flex-md-row flex-column" >
-      <div class="col-12 col-md-4 rounded-4 bg-white py-5">
+      <div class="col-12 col-md-4 rounded-4 bg-white py-5 card-form">
         <div class="d-flex justify-content-center pb-4">
           <div class="d-flex justify-content-center align-items-center" style="background-color:{{jobData.logoBackground}};width:100px;height:100px;border-radius:50%;">
 <img class="h-50 w-50" src="/{{jobData.logo}}" alt="">
           </div> 
         </div>
-        <div class="d-flex align-items-center flex-column">
+        <div class="d-flex align-items-center flex-column ">
           <h4>{{jobData.company}}</h4>
           <p class="text-muted">{{jobData.company}} Design Agency</p>
         </div>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="col-12 col-md-8 rounded-4 d-flex gap-4 flex-column">
-         <div class="w-100 p-4 d-flex justify-content-between bg-white rounded-4 d-none d-md-flex">
+         <div class="w-100 p-4 d-flex justify-content-between bg-white rounded-4 d-none d-md-flex card-form">
           <div class="">
             <h4>{{jobData.position}}</h4>
             <p class="text-muted">{{jobData.contract}} position</p>
@@ -55,7 +55,7 @@
               </div>
             </div>
          </div>
-         <form class="row bg-white rounded-4 p-4" action="/apply-now/{{jobData._id}}" method="post" enctype="multipart/form-data">
+         <form class="row bg-white rounded-4 p-4 card-form" action="/apply-now/{{jobData._id}}" method="post" enctype="multipart/form-data">
            <div class="row">
             <h5 class="fw-bold">Fill the job applications</h5>
            </div>
@@ -95,9 +95,9 @@
           <p>Attach your resume</p>
           <div>
 <input class="filepond" type="file" id="upload" name="file" hidden/>
-<label class="btn bg-light px-5 rounded-3 border-secondary mt-3" for="upload" style="border-style:dashed;"><div class="d-flex align-items-center gap-3">
+<label class="file-upload btn bg-light px-5 rounded-3 border-secondary mt-3" for="upload" style="border-style:dashed;"><div class="d-flex align-items-center gap-3">
   <div><div class="bg-violet p-3 rounded-4"><i class="fa-solid fa-cloud-arrow-up text-white"></i></div></div>
-  <div class="text-start d-flex flex-column justify-content-center"><p style="font-size:0.9rem;" class="p-0 m-0">Upload Files</p><p class="text-muted opacity-75 p-0 m-0" style="font-size:0.7rem;">PDF,DOC,JPG,PNG</p></div>
+  <div class="text-start d-flex flex-column justify-content-center "><p style="font-size:0.9rem;" class="p-0 m-0">Upload Files</p><p class="text-muted opacity-75 p-0 m-0" style="font-size:0.7rem;">PDF,DOC,JPG,PNG</p></div>
   
 </div></label>
           </div>
